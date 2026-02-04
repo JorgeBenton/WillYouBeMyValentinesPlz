@@ -182,54 +182,61 @@
   <audio id="yesSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
 
   <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const card = document.querySelector(".card");
-    const hoverSound = document.getElementById("hoverSound");
-    const yesSound = document.getElementById("yesSound");
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const card = document.querySelector(".card");
+  const hoverSound = document.getElementById("hoverSound");
+  const yesSound = document.getElementById("yesSound");
 
-    noBtn.addEventListener("mouseenter", () => {
-      hoverSound.currentTime = 0;
-      hoverSound.play();
+  noBtn.addEventListener("mouseenter", () => {
+    hoverSound.currentTime = 0;
+    hoverSound.play();
 
-      const cardRect = card.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const btnRect = noBtn.getBoundingClientRect();
 
-      const maxX = cardRect.width - btnRect.width - 10;
-      const maxY = cardRect.height - btnRect.height - 10;
+    const padding = 12; // safe spacing from edges
 
-      noBtn.style.left = Math.random() * maxX + "px";
-      noBtn.style.top = Math.random() * maxY + "px";
+    const maxX = cardRect.width - btnRect.width - padding;
+    const maxY = cardRect.height - btnRect.height - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = `${Math.max(padding, x)}px`;
+    noBtn.style.top  = `${Math.max(padding, y)}px`;
+  });
+
+  yesBtn.addEventListener("click", () => {
+    yesSound.play();
+
+    confetti({
+      particleCount: 260,
+      spread: 120,
+      origin: { y: 0.65 }
     });
 
-    yesBtn.addEventListener("click", () => {
-      yesSound.play();
+    setTimeout(() => {
+      alert("YAY! That’s what I thought 🤷‍♂️💖");
+    }, 500);
+  });
 
-      confetti({
-        particleCount: 260,
-        spread: 120,
-        origin: { y: 0.65 }
-      });
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 22 + 14 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
 
-      setTimeout(() => {
-        alert("YAY! That’s what I thought 🤷‍♂️💖");
-      }, 500);
-    });
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }
 
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💗";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 22 + 14 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+  setInterval(createHeart, 380);
+</script>
 
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
-    }
-
-    setInterval(createHeart, 380);
-  </script>
 
 </body>
+
 </html>
