@@ -217,7 +217,7 @@
     });
 
     setTimeout(() => {
-      alert("YAY! That’s what I thought 🤷‍♂️💖");
+      alert("Your love hit me harder than the Bite of ’87… and I’m not mad about it. 🤷‍♂️ 🐰🐻🐥🦊");
     }, 500);
   });
 
@@ -240,5 +240,6 @@
 </body>
 
 </html>
+
 
 
