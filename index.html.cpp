@@ -174,7 +174,7 @@
       <button id="no">No 🥺</button>
     </div>
 
-    <div class="hint"> Are you ready for Freddy? Because Im ready for you ✨</div>
+    <div class="hint"> Are you ready for Freddy? Because I’m ready for you ✨</div>
   </div>
 
   <!-- Sounds -->
@@ -240,4 +240,5 @@
 </body>
 
 </html>
+
 
